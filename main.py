@@ -1,3 +1,5 @@
+# Code by IKrehan
+
 #!/usr/bin/env python3
 
 

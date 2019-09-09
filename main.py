@@ -124,7 +124,7 @@ left.place(x=0, y=0)
 # Left Side: Questions Location.
 
 # Texts that will be displayed in GUI
-data_file = open('data.csv', 'r')
+data_file = open('data.csv', 'r', encoding='utf-8')
 data = data_file.read()
 data_file.close()
 

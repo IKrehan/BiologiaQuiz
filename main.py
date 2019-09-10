@@ -4,8 +4,7 @@
 
 
 from tkinter import *
-from random import randint, shuffle
-
+from pygame import mixer
 
 # Click receive the answer text and compare with answer in data
 def click(answer_opt):
@@ -57,6 +56,15 @@ def click(answer_opt):
                                 left.create_text(250, 250, text="Fim!\nObrigado por jogar <3", font=("Chilanka", 30, "bold"), fill="red", justify='center')
 
 
+        def play_correct():
+                mixer.music.load("sounds/correct.mp3") #Loading File Into Mixer
+                mixer.music.play() #Playing It In The Whole Device
+
+
+        def play_incorrect():
+                mixer.music.load("sounds/incorrect.mp3") #Loading File Into Mixer
+                mixer.music.play() #Playing It In The Whole Device
+
         if use == False:
 
                 # Check each button possibility (certainly a bad way to do that)
@@ -68,6 +76,7 @@ def click(answer_opt):
                         correct_label_border = left.create_text(250, 110, text="Correto!", font=("Chilanka", 47, "bold"), fill="green2")
                         info_label = left.create_text(250, 450, text="Clique na tela para continuar.", font=("Chilanka", 15, "bold"), fill="steelblue3")
 
+                        play_correct()
                         root.bind("<Button-1>", go_ahead)
                 
                 elif 'button2' == answer_opt and texts[d] == texts[a]:
@@ -77,6 +86,7 @@ def click(answer_opt):
                         correct_label_border = left.create_text(250, 110, text="Correto!", font=("Chilanka", 47, "bold"), fill="green2")
                         info_label = left.create_text(250, 450, text="Clique na tela para continuar.", font=("Chilanka", 15, "bold"), fill="steelblue3")
 
+                        play_correct()
                         root.bind("<Button-1>", go_ahead)
                 
                 elif 'button3' == answer_opt and texts[e] == texts[a]:
@@ -86,6 +96,7 @@ def click(answer_opt):
                         correct_label_border = left.create_text(250, 110, text="Correto!", font=("Chilanka", 47, "bold"), fill="green2")
                         info_label = left.create_text(250, 450, text="Clique na tela para continuar.", font=("Chilanka", 15, "bold"), fill="steelblue3")
 
+                        play_correct()
                         root.bind("<Button-1>", go_ahead)
                 
                 elif 'button4' == answer_opt and texts[f] == texts[a]:
@@ -95,15 +106,23 @@ def click(answer_opt):
                         correct_label_border = left.create_text(250, 110, text="Correto!", font=("Chilanka", 47, "bold"), fill="green2")
                         info_label = left.create_text(250, 450, text="Clique na tela para continuar.", font=("Chilanka", 15, "bold"), fill="steelblue3")
 
+                        play_correct()
                         root.bind("<Button-1>", go_ahead)
                 
 
                 else:
-                        print("incorreto!")
+                        play_incorrect()
+
+mixer.pre_init(22050, -16, 2, 512)
+mixer.init()
 
 root = Tk()
 root.geometry('1000x500+100+100')
-root.title('Abacate')
+root.title('BiologiaQuiz')
+
+icon = PhotoImage(file='imgs/icon.gif')
+root.tk.call('wm', 'iconphoto', root._w, icon)
+
 root.resizable(False, False)
 
 use = False
